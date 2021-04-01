@@ -3,18 +3,11 @@ import './Components.css'
 
 const Trellolist = ({title}) => {
     return (
-        <div className="listclass" style={styles.container}>
-            <p>{title}</p>
+        <div className="listclass" >
+            <h2>{title}</h2>
         </div>
     )
 }
-const styles = {
-    container: {
-     
-      
-      width: 300,
-      padding: 8,
-    },
-  };
+
 
 export default Trellolist;
