@@ -3,7 +3,7 @@ function App() {
   return (
     <div>
 
-      <Trellolist />
+      <Trellolist title='test'/>
     </div>
   );
 }

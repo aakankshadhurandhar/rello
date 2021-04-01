@@ -1,10 +1,10 @@
 //this file is for whole list component like :add a task etc
 
 
-const Trellolist = () => {
+const Trellolist = ({title}) => {
     return (
         <div>
-            <p>List</p>
+            <p>{title}</p>
         </div>
     )
 }
