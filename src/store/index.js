@@ -6,7 +6,7 @@ import { createStore } from 'redux';
 
 
 //empty reducer for now
-const reducer()=>{}
+const reducer=()=>{}
 
 
 const store=createStore(reducer);
