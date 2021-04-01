@@ -17,7 +17,7 @@
     border-radius: .5rem;
     width: 15%;
     padding: 1em;
-    
+    margin: 1rem;
 
 
 }
@@ -25,7 +25,7 @@
 h2 {
 
     font-family: var(--title);
-    font-size: 3rem;
+    font-size: 1rem;
     text-align: left;
     padding-left: .1rem;
 }
@@ -34,4 +34,10 @@ h1{
         font-size: 4rem;
 
 
+}
+.cardlist{
+    margin: .6rem;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
 }

@@ -2,7 +2,7 @@ import Trellolist from './Trellolist'
 import './Components.css'
 //connects react-component to store
 import { connect } from 'react-redux';
-import React, { Component } from 'react';
+import React from 'react';
 
 
 const  App =(props)=>{
@@ -10,7 +10,7 @@ const  App =(props)=>{
     const { lists }=props;
     return (
       <div className="App">
-        <h2>Hello World</h2>
+        <h1>Rello</h1>
         <div style={styles.listsContainer}>
           {lists.map((list) => (
             <Trellolist title={list.title} cards={list.cards} />

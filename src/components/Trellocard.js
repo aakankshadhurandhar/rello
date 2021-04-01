@@ -9,13 +9,14 @@ import { CardContent } from '@material-ui/core';
 
 
 
-const Trellocard = () => {
+
+const Trellocard = ({ text }) => {
     return (
-        <div>
+        <div className="cardlist">
             <Card variant="outlined">
                 <CardContent>
                 <Typography gutterBottom>
-                card
+                {text}
                 </Typography>
 
                 </CardContent>
