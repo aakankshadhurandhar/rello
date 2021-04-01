@@ -2,17 +2,40 @@ import Trellolist from './Trellolist'
 import './Components.css'
 //connects react-component to store
 import { connect } from 'react-redux';
-function App() {
-  return (
-    <div>
-      <h1>Rello</h1>
-      <Trellolist title='test'/>
-    </div>
-  );
-}
+import React, { Component } from 'react';
+
+
+const  App =(props)=>{
+  
+    const { lists }=props;
+    return (
+      <div className="App">
+        <h2>Hello World</h2>
+        <div style={styles.listsContainer}>
+          {lists.map((list) => (
+            <Trellolist title={list.title} cards={list.cards} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+
 
 
 
 //function to subscribe to store updates
-const mapStateToProps = (state) => ({ lists: state.lists })
+const styles = {
+  listsContainer: {
+    display: "flex",
+    flexDirection: "row",
+  },
+};
+
+const mapStateToProps = (state) => ({
+  lists: state.lists,
+});
+
 export default connect(mapStateToProps)(App);
+
+

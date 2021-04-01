@@ -2,14 +2,18 @@
 
 
 import { createStore } from 'redux';
+import rootReducer from "../reducers";
 //creates a complete state tree of app
 
 
 //empty reducer for now
-const reducer=()=>{}
 
 
-const store=createStore(reducer);
+
+
+const store=createStore(rootReducer);
+
+
 //it returns complte state of app
 
 export default store;
