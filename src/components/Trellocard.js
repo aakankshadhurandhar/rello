@@ -12,7 +12,7 @@ import { CardContent } from '@material-ui/core';
 
 const Trellocard = ({ text }) => {
     return (
-        <div className="cardlist">
+        <div className="cardlist" style={styles.cardContainer}>
             <Card variant="outlined">
                 <CardContent>
                 <Typography gutterBottom>
@@ -24,5 +24,10 @@ const Trellocard = ({ text }) => {
         </div>
     )
 }
+const styles = {
+    cardContainer: {
+      marginBottom: 8,
+    },
+  };
 
 export default Trellocard

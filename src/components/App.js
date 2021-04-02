@@ -17,9 +17,13 @@ const  App =( props )=>{
         <div style={styles.listsContainer}>
           {lists.map((list) => (
             <Trellolist   
-            key={list.id} 
-            title={list.title} 
-            cards={list.cards} />
+            key={list.id}
+            listID={list.id}
+            title={list.title}
+            cards={list.cards}
+            
+            
+            />
           ))}
           <Actionbutton list />
         </div>

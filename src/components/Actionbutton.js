@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Card, Button } from "@material-ui/core";
+import {  Card, Button } from "@material-ui/core";
 import Textarea from "react-textarea-autosize";
 import { connect } from "react-redux";
-import { addList } from "../actions/kAddlistactions";
+import { addList, addCard } from "../actions";
 import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -17,7 +17,7 @@ class ActionButton extends Component {
   };
 
   closeForm = (e) => {
-    this.setState({ formOpen: false });
+    this.setState({ formOpen: false, text: "" });
   };
 
   handleInputChange = (e) => {
@@ -27,7 +27,19 @@ class ActionButton extends Component {
   handleAddList = () => {
     const { dispatch } = this.props;
     const { text } = this.state;
-    if (text) dispatch(addList(text));
+    if (text) {
+      this.setState({ text: "" });
+      dispatch(addList(text));
+    }
+  };
+
+  handleAddCard = () => {
+    const { dispatch, listID } = this.props;
+    const { text } = this.state;
+    if (text) {
+      this.setState({ text: "" });
+      dispatch(addCard(listID, text));
+    }
   };
 
   renderAddButton = () => {
@@ -35,8 +47,8 @@ class ActionButton extends Component {
 
     const buttonText = list ? "Add another list" : "Add another card";
     const buttonTextOpacity = list ? 1 : 0.5;
-    const buttonTextColor = list ? "black" : "inherit";
-    const buttonTextBackground = list ? "rgba(0,0,0,.15)" : "inherit";
+    const buttonTextColor = list ? "black" : "white";
+    const buttonTextBackground = list ? "#F3F4F6" : "#111827";
 
     return (
       <div
@@ -63,7 +75,7 @@ class ActionButton extends Component {
     const buttonTitle = list ? "Add List" : "Add Card";
 
     return (
-      <div style={{margin:12}}>
+      <div>
         <Card
           style={{
             minHeight: 80,
@@ -89,12 +101,12 @@ class ActionButton extends Component {
         <div style={styles.formButtonGroup}>
           <Button
             variant="contained"
-            onMouseDown={this.handleAddList}
+            onMouseDown={list ? this.handleAddList : this.handleAddCard}
             style={{ color: "white", backgroundColor: "black" }}
           >
             {buttonTitle}
           </Button>
-          <CloseIcon style={{ marginLeft: 8, cursr: "pointer" }}>close</CloseIcon>
+          <CloseIcon style={{ marginLeft: 8, cursr: "pointer" }}></CloseIcon>
         </div>
       </div>
     );
@@ -122,4 +134,4 @@ const styles = {
   },
 };
 
-export default connect()(ActionButton);
+export default connect()(ActionButton)
