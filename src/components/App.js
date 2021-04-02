@@ -5,9 +5,10 @@ import './Components.css'
 //connects react-component to store
 import { connect } from 'react-redux';
 import React from 'react';
+import Actionbutton from './Actionbutton';
 
 
-const  App =(props)=>{
+const  App =( props )=>{
   
     const { lists }=props;
     return (
@@ -15,8 +16,12 @@ const  App =(props)=>{
         <h1>Rello</h1>
         <div style={styles.listsContainer}>
           {lists.map((list) => (
-            <Trellolist title={list.title} cards={list.cards} />
+            <Trellolist   
+            key={list.id} 
+            title={list.title} 
+            cards={list.cards} />
           ))}
+          <Actionbutton list />
         </div>
       </div>
     );

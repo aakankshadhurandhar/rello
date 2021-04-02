@@ -1,59 +1,53 @@
-//button for adding add button
+import React, { Component } from "react";
+import { Icon, Card, Button } from "@material-ui/core";
+import Textarea from "react-textarea-autosize";
 
-import React,{ useState } from 'react'
-import TextArea from 'react-textarea-autosize';
-import { Icon,Card,Button } from '@material-ui/core';
+class ActionButton extends Component {
+  state = {
+    formOpen: false,
+    text: "",
+  };
+  //function for opraning the add text
+  openForm = () => {
+    this.setState({ formOpen: true });
+  };
+  //function for closing the add text
+  closeForm = (e) => {
+    this.setState({ formOpen: false });
+  };
+  //function for entering input in text
+  handleInputChange = (e) => {
+    this.setState({ text: e.target.value });
+  };
+  //add button 
+  renderAddButton = () => {
+    const { list } = this.props;
 
-function Actionbutton() {
+    const buttonText = list ? "Add another list" : "Add another card";
+    const buttonTextOpacity = list ? 1 : 0.5;
+    const buttonTextColor = list ? "white" : "inherit";
+    const buttonTextBackground = list ? "rgba(0,0,0,.15)" : "inherit";
 
-    //set initial value
-    const [formOpen,setformOpen]=useState('false');
-    const [text,settext]=useState(' ');
+    return (
+      <div
+        onClick={this.openForm}
+        style={{
+          ...styles.openFormButtonGroup,
+          opacity: buttonTextOpacity,
+          color: buttonTextColor,
+          backgroundColor: buttonTextBackground,
+        }}
+      >
+        <Icon>add</Icon>
+        <p>{buttonText}</p>
+      </div>
+    );
+  };
+  //form rendering
+  renderForm = () => {
+    const { list } = this.props;
 
-    //function for openform
-    const openForm=() => {
-            setformOpen('true');
-
-    }
-    //function for close form
-    const closeForm=()=>{
-        setformOpen('false');
-    }
-    //set input change
-    const handleinputchange=(e)=>{
-        settext(e.target.value);
-    }
-    //render button function :what happens when add is clicked
-    const Addbutton=(props)=>{
-        const { list }=props;
-        const buttonText = list ? "Add another list" : "Add another card";
-        const buttonTextOpacity = list ? 1 : 0.5;
-        const buttonTextColor = list ? "white" : "inherit";
-        const buttonTextBackground = list ? "rgba(0,0,0,.15)" : "inherit";
-
-        return (
-            <div
-              onClick={openForm}
-              style={{
-                ...styles.openFormButtonGroup,
-                opacity: buttonTextOpacity,
-                color: buttonTextColor,
-                backgroundColor: buttonTextBackground,
-              }}
-            >
-              <Icon>add</Icon>
-              <p>{buttonText}</p>
-            </div>
-          );
-
-
-
-    };
-
-    //function for rendering forms (open/closing)it
-    const renderform=(props)=>{
-        const { list }=props;
-        const placeholder = list
+    const placeholder = list
       ? "Enter list title..."
       : "Enter a title for this card...";
     const buttonTitle = list ? "Add List" : "Add Card";
@@ -70,9 +64,9 @@ function Actionbutton() {
           <Textarea
             placeholder={placeholder}
             autoFocus
-            onBlur={closeForm}
-            value={state.text}
-            onChange={handleInputChange}
+            onBlur={this.closeForm}
+            value={this.state.text}
+            onChange={this.handleInputChange}
             style={{
               resize: "none",
               width: "100%",
@@ -93,31 +87,28 @@ function Actionbutton() {
         </div>
       </div>
     );
-
-
-
-    }
-
-
-    return (
-        state.formOpen ? renderForm() : AddButton())
-        ;
-    
-}
-const styles = {
-    openFormButtonGroup: {
-      display: "flex",
-      alignItems: "center",
-      cursor: "pointer",
-      borderRadius: 3,
-      height: 36,
-      width: 272,
-      paddingLeft: 10,
-    },
-    formButtonGroup: {
-      marginTop: 8,
-      display: "flex",
-      alignItems: "center",
-    },
   };
-export default Actionbutton
+//giving optins to either render form or add button
+  render() {
+    return this.state.formOpen ? this.renderForm() : this.renderAddButton();
+  }
+}
+
+const styles = {
+  openFormButtonGroup: {
+    display: "flex",
+    alignItems: "center",
+    cursor: "pointer",
+    borderRadius: 3,
+    height: 36,
+    width: 272,
+    paddingLeft: 10,
+  },
+  formButtonGroup: {
+    marginTop: 8,
+    display: "flex",
+    alignItems: "center",
+  },
+};
+
+export default ActionButton;
