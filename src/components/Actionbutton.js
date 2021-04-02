@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { Icon, Card, Button } from "@material-ui/core";
+import { Card, Button } from "@material-ui/core";
 import Textarea from "react-textarea-autosize";
+import { connect } from "react-redux";
+import { addList } from "../actions/kAddlistactions";
 import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -9,19 +11,25 @@ class ActionButton extends Component {
     formOpen: false,
     text: "",
   };
-  //function for opraning the add text
+
   openForm = () => {
     this.setState({ formOpen: true });
   };
-  //function for closing the add text
+
   closeForm = (e) => {
     this.setState({ formOpen: false });
   };
-  //function for entering input in text
+
   handleInputChange = (e) => {
     this.setState({ text: e.target.value });
   };
-  //add button 
+
+  handleAddList = () => {
+    const { dispatch } = this.props;
+    const { text } = this.state;
+    if (text) dispatch(addList(text));
+  };
+
   renderAddButton = () => {
     const { list } = this.props;
 
@@ -40,12 +48,12 @@ class ActionButton extends Component {
           backgroundColor: buttonTextBackground,
         }}
       >
-        <AddIcon>add</AddIcon>
+        <AddIcon></AddIcon>
         <p>{buttonText}</p>
       </div>
     );
   };
-  //form rendering
+
   renderForm = () => {
     const { list } = this.props;
 
@@ -55,11 +63,11 @@ class ActionButton extends Component {
     const buttonTitle = list ? "Add List" : "Add Card";
 
     return (
-      <div>
+      <div style={{margin:12}}>
         <Card
           style={{
             minHeight: 80,
-            minWidth: 472,
+            minWidth: 272,
             padding: "6px 8px 2px",
           }}
         >
@@ -75,23 +83,23 @@ class ActionButton extends Component {
               overflow: "hidden",
               outline: "none",
               border: "none",
-           
             }}
           />
         </Card>
         <div style={styles.formButtonGroup}>
           <Button
             variant="contained"
+            onMouseDown={this.handleAddList}
             style={{ color: "white", backgroundColor: "black" }}
           >
             {buttonTitle}
           </Button>
-          <CloseIcon style={{ marginLeft: 1, cursr: "pointer" }}> c </CloseIcon>
+          <CloseIcon style={{ marginLeft: 8, cursr: "pointer" }}>close</CloseIcon>
         </div>
       </div>
     );
   };
-//giving optins to either render form or add button
+
   render() {
     return this.state.formOpen ? this.renderForm() : this.renderAddButton();
   }
@@ -104,8 +112,8 @@ const styles = {
     cursor: "pointer",
     borderRadius: 3,
     height: 36,
-    width: 300,
-    paddingLeft: 5,
+    width: 272,
+    paddingLeft: 10,
   },
   formButtonGroup: {
     marginTop: 8,
@@ -114,4 +122,4 @@ const styles = {
   },
 };
 
-export default ActionButton;
+export default connect()(ActionButton);
