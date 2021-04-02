@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Icon, Card, Button } from "@material-ui/core";
 import Textarea from "react-textarea-autosize";
+import AddIcon from '@material-ui/icons/Add';
+import CloseIcon from '@material-ui/icons/Close';
 
 class ActionButton extends Component {
   state = {
@@ -25,7 +27,7 @@ class ActionButton extends Component {
 
     const buttonText = list ? "Add another list" : "Add another card";
     const buttonTextOpacity = list ? 1 : 0.5;
-    const buttonTextColor = list ? "white" : "inherit";
+    const buttonTextColor = list ? "black" : "inherit";
     const buttonTextBackground = list ? "rgba(0,0,0,.15)" : "inherit";
 
     return (
@@ -38,7 +40,7 @@ class ActionButton extends Component {
           backgroundColor: buttonTextBackground,
         }}
       >
-        <Icon>add</Icon>
+        <AddIcon>add</AddIcon>
         <p>{buttonText}</p>
       </div>
     );
@@ -57,7 +59,7 @@ class ActionButton extends Component {
         <Card
           style={{
             minHeight: 80,
-            minWidth: 272,
+            minWidth: 472,
             padding: "6px 8px 2px",
           }}
         >
@@ -73,17 +75,18 @@ class ActionButton extends Component {
               overflow: "hidden",
               outline: "none",
               border: "none",
+           
             }}
           />
         </Card>
         <div style={styles.formButtonGroup}>
           <Button
             variant="contained"
-            style={{ color: "white", backgroundColor: "#5aac44" }}
+            style={{ color: "white", backgroundColor: "black" }}
           >
             {buttonTitle}
           </Button>
-          <Icon style={{ marginLeft: 8, cursr: "pointer" }}>close</Icon>
+          <CloseIcon style={{ marginLeft: 1, cursr: "pointer" }}> c </CloseIcon>
         </div>
       </div>
     );
@@ -101,8 +104,8 @@ const styles = {
     cursor: "pointer",
     borderRadius: 3,
     height: 36,
-    width: 272,
-    paddingLeft: 10,
+    width: 300,
+    paddingLeft: 5,
   },
   formButtonGroup: {
     marginTop: 8,
