@@ -106,9 +106,9 @@ class ActionButton extends Component {
             onMouseDown={list ? this.handleAddList : this.handleAddCard}
             style={{ color: "white", backgroundColor: "black" }}
           >
-            {buttonTitle}
+            {buttonTitle}{" "}
           </Button>
-          <CloseIcon style={{ marginLeft: 8, cursr: "pointer" }}></CloseIcon>
+          <CloseIcon style={{ marginLeft: 8, cursor: "pointer" }}></CloseIcon>
         </div>
       </div>
     );

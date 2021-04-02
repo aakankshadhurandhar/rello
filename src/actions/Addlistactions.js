@@ -9,3 +9,23 @@ export var addList = (title) => {
   };
 };
 
+
+//drag and drop function
+export const sort = (
+  droppableIdStart,
+  droppableIdEnd,
+  droppableIndexStart,
+  droppableIndexEnd,
+  draggableId
+) => {
+  return {
+    type: CONSTANTS.DRAG_HAPPENED,
+    payload: {
+      droppableIdStart,
+      droppableIdEnd,
+      droppableIndexStart,
+      droppableIndexEnd,
+      draggableId,
+    },
+  };
+};
