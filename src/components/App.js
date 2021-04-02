@@ -1,9 +1,11 @@
 
 
-import React, { Component } from "react";
-import Trellolist from "./Trellolist";
-import { connect } from "react-redux";
-import ActionButton from "./Actionbutton";
+import Trellolist from './Trellolist'
+import './Components.css'
+//connects react-component to store
+import { connect } from 'react-redux';
+import React from 'react';
+import Actionbutton from './Actionbutton';
 import { DragDropContext } from "react-beautiful-dnd";
 import { sort } from "../actions";
 import styled from "styled-components";
@@ -14,11 +16,11 @@ const ListContainer = styled.div`
   flex-direction: row;
 `;
 
-class App extends Component {
-  onDragEnd = (result) => {
+const  App =( props )=>{
+  const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
     if (!destination) return;
-    this.props.dispatch(
+    props.dispatch(
       sort(
         source.droppableId,
         destination.droppableId,
@@ -28,12 +30,11 @@ class App extends Component {
       )
     );
   };
-
-  render() {
-    const { lists } = this.props;
+    const { lists }=props;
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <h2>Rello</h2>
+      
+        <DragDropContext onDragEnd={onDragEnd}>
+        <h1>Rello</h1>
         <ListContainer>
           {lists.map((list) => (
             <Trellolist
@@ -43,15 +44,26 @@ class App extends Component {
               cards={list.cards}
             />
           ))}
-          <ActionButton list />
+          <Actionbutton list />
         </ListContainer>
-      </DragDropContext>
+         
+        
+        </DragDropContext>
+      
     );
   }
-}
+
+
+
+
+
+//function to subscribe to store updates
+
 
 const mapStateToProps = (state) => ({
   lists: state.lists,
 });
 
 export default connect(mapStateToProps)(App);
+
+
