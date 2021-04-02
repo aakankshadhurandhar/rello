@@ -78,9 +78,11 @@ class ActionButton extends Component {
       <div>
         <Card
           style={{
-            minHeight: 80,
-            minWidth: 272,
+            minHeight: 85,
+            
             padding: "6px 8px 2px",
+            marginLeft: 8,
+            marginRight: 8,
           }}
         >
           <Textarea
@@ -126,11 +128,14 @@ const styles = {
     height: 36,
     width: 272,
     paddingLeft: 10,
+    marginLeft: 8,
+    paddingRight: 10,
   },
   formButtonGroup: {
     marginTop: 8,
     display: "flex",
     alignItems: "center",
+    marginLeft: 8,
   },
 };
 

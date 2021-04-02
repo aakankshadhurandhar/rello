@@ -6,14 +6,17 @@ import './Components.css'
 import { connect } from 'react-redux';
 import React from 'react';
 import Actionbutton from './Actionbutton';
+import { DragDropContext } from "react-beautiful-dnd";
 
 
 const  App =( props )=>{
-  
+   const onDragEnd = () => {};
     const { lists }=props;
     return (
-      <div className="App">
+      
+        <DragDropContext onDragEnd={onDragEnd}>
         <h1>Rello</h1>
+        <div className="App">
         <div style={styles.listsContainer}>
           {lists.map((list) => (
             <Trellolist   
@@ -27,7 +30,9 @@ const  App =( props )=>{
           ))}
           <Actionbutton list />
         </div>
-      </div>
+        </div>
+        </DragDropContext>
+      
     );
   }
 
