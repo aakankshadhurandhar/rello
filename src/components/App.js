@@ -36,7 +36,7 @@ const  App =( props )=>{
     return (
       
         <DragDropContext onDragEnd={onDragEnd}>
-        <h1>TaskHub🌹 </h1>
+        <h1>TaskHub</h1>
         
         <Droppable droppableId="all-lists" direction="horizontal" type="list">
           {(provided) => (
