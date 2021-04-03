@@ -1,7 +1,7 @@
 import { CONSTANTS } from "./../actions/index";
 
 let listID = 2,
-  cardID = 6;
+  cardID = 5;
 
 const initialState = [
   {
