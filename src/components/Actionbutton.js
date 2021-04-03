@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { addList, addCard } from "../actions";
 import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
-import styled from "styled-components";
 
 class ActionButton extends Component {
   state = {
@@ -48,29 +47,22 @@ class ActionButton extends Component {
 
     const buttonText = list ? "Add another list" : "Add another card";
     const buttonTextOpacity = list ? 1 : 0.5;
-    const buttonTextColor = list ? "white" : "inherit";
-    const buttonTextBackground = list ? "rgba(0,0,0,.15)" : "inherit";
-
-    const OpenFormButton = styled.div`
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      border-radius: 3px;
-      height: 36px;
-      width: 300px;
-      marginleft: 8px;
-      paddingleft: 10px;
-      paddingright: 10px;
-      opacity: ${buttonTextOpacity};
-      color: ${buttonTextColor};
-      background-color: ${buttonTextBackground};
-    `;
+    const buttonTextColor = list ? "black" : "white";
+    const buttonTextBackground = list ? "#F3F4F6" : "#111827";
 
     return (
-      <OpenFormButton onClick={this.openForm}>
+      <div
+        onClick={this.openForm}
+        style={{
+          ...styles.openFormButtonGroup,
+          opacity: buttonTextOpacity,
+          color: buttonTextColor,
+          backgroundColor: buttonTextBackground,
+        }}
+      >
         <AddIcon></AddIcon>
-        <p style={{ flexShrink: 0 }}>{buttonText}</p>
-      </OpenFormButton>
+        <p>{buttonText}</p>
+      </div>
     );
   };
 
@@ -82,59 +74,43 @@ class ActionButton extends Component {
       : "Enter a title for this card...";
     const buttonTitle = list ? "Add List" : "Add Card";
 
-    const Container = styled.div`
-      width: ${list ? "300px" : "100%"};
-    `;
-
-    const StyledCard = styled(Card)`
-      min-height: 85px;
-      padding: 6px 8px 2px;
-    `;
-
-    const StyledTextarea = styled(Textarea)`
-      resize: none;
-      width: 100%;
-      overflow: hidden;
-      outline: none;
-      border: none;
-    `;
-
-    const StyledButton = styled(Button)`
-      && {
-        color: white;
-        background: #5aac44;
-      }
-    `;
-
-    const ButtonContainer = styled.div`
-      margin-top: 8px;
-      display: flex;
-      align-items: center;
-      margin-left: 8px;
-    `;
-
-    
-
     return (
-      <Container>
-        <StyledCard>
-          <StyledTextarea
+      <div>
+        <Card
+          style={{
+            minHeight: 85,
+            
+            padding: "6px 8px 2px",
+            marginLeft: 8,
+            marginRight: 8,
+          }}
+        >
+          <Textarea
             placeholder={placeholder}
             autoFocus
             onBlur={this.closeForm}
             value={this.state.text}
             onChange={this.handleInputChange}
+            style={{
+              resize: "none",
+              width: "100%",
+              overflow: "hidden",
+              outline: "none",
+              border: "none",
+            }}
           />
-        </StyledCard>
-        <ButtonContainer>
-          <StyledButton
-            onMouseDown={list ? this.handleAddList : this.handleAddCard}
+        </Card>
+        <div style={styles.formButtonGroup}>
+          <Button
             variant="contained"
-            children={buttonTitle}
-          />
-          <CloseIcon onClick={this.closeForm}></CloseIcon>
-        </ButtonContainer>
-      </Container>
+            onMouseDown={list ? this.handleAddList : this.handleAddCard}
+            style={{ color: "white", backgroundColor: "black" }}
+          >
+            {buttonTitle}{" "}
+          </Button>
+          <CloseIcon style={{ marginLeft: 8, cursor: "pointer" }}></CloseIcon>
+        </div>
+      </div>
     );
   };
 
@@ -143,4 +119,24 @@ class ActionButton extends Component {
   }
 }
 
-export default connect()(ActionButton);
+const styles = {
+  openFormButtonGroup: {
+    display: "flex",
+    alignItems: "center",
+    cursor: "pointer",
+    borderRadius: 3,
+    height: 36,
+    width: 272,
+    paddingLeft: 10,
+    marginLeft: 8,
+    paddingRight: 10,
+  },
+  formButtonGroup: {
+    marginTop: 8,
+    display: "flex",
+    alignItems: "center",
+    marginLeft: 8,
+  },
+};
+
+export default connect()(ActionButton)
