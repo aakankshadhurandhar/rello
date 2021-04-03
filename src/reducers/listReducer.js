@@ -1,7 +1,7 @@
 import { CONSTANTS } from "./../actions/index";
 
 let listID = 2,
-  cardID = 5;
+  cardID = 6;
 
 const initialState = [
   {
@@ -88,17 +88,14 @@ const listReducer = (state = initialState, action) => {
         const card = list.cards.splice(droppableIndexStart, 1);
         list.cards.splice(droppableIndexEnd, 0, ...card);
       }
+      else {
+        const startList = state.find((list) => droppableIdStart === list.id);
+        const card = startList.cards.splice(droppableIndexStart, 1);
+        const endList = state.find((list) => droppableIdEnd === list.id);
+        endList.cards.splice(droppableIndexEnd, 0, ...card);
+      }
       return newState;
-      //delete card case
-      case CONSTANTS.DELETE_CARD: {
-      const { id, listID } = action.payload;
-      return state.map((list) => {
-        if (list.id === listID) {
-          const newCards = list.cards.filter((card) => card.id !== id);
-          return { ...list, cards: newCards };
-        } else return list;
-      });
-    }
+      
 
     default:
       return state;
