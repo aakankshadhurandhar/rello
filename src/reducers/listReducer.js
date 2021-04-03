@@ -1,7 +1,7 @@
 import { CONSTANTS } from "./../actions/index";
 
 let listID = 2,
-  cardID = 6;
+  cardID = 5;
 
 const initialState = [
   {
@@ -75,7 +75,7 @@ const listReducer = (state = initialState, action) => {
       } = action.payload;
       const newState = [...state];
       // in the same list
-      if (droppableIdStart == droppableIdEnd) {
+      if (droppableIdStart === droppableIdEnd) {
         const list = state.find((list) => droppableIdStart === list.id);
         const card = list.cards.splice(droppableIndexStart, 1);
         list.cards.splice(droppableIndexEnd, 0, ...card);

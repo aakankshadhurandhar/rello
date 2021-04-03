@@ -9,7 +9,8 @@ import Actionbutton from './Actionbutton';
 import { DragDropContext } from "react-beautiful-dnd";
 import { sort } from "../actions";
 import styled from "styled-components";
-import './Components.css'
+import './Components.css';
+import countcard from '../reducers/listReducer'
 
 const ListContainer = styled.div`
   display: flex;
@@ -34,7 +35,7 @@ const  App =( props )=>{
     return (
       
         <DragDropContext onDragEnd={onDragEnd}>
-        <h1>Rello</h1>
+        <h1>TaskHub🌹 </h1>
         <ListContainer>
           {lists.map((list) => (
             <Trellolist
