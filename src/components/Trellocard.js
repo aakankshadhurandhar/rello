@@ -7,10 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import { CardContent } from '@material-ui/core';
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of 5501bf3... now we can drag and drop across columns
 
 const CardContainer = styled.div`
   margin-bottom: 8px;
