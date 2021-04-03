@@ -75,7 +75,7 @@ const listReducer = (state = initialState, action) => {
         type,
       } = action.payload;
       const newState = [...state];
-      //list drop and drag
+      
       if (type === "list") {
         const list = newState.splice(droppableIndexStart, 1);
         newState.splice(droppableIndexEnd, 0, ...list);

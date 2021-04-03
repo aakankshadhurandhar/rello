@@ -37,7 +37,7 @@ const  App =( props )=>{
       
         <DragDropContext onDragEnd={onDragEnd}>
         <h1>TaskHub🌹 </h1>
-        //list drag and drop
+        
         <Droppable droppableId="all-lists" direction="horizontal" type="list">
           {(provided) => (
             <ListContainer {...provided.droppableProps} ref={provided.innerRef}>
