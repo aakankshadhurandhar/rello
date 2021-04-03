@@ -5,6 +5,7 @@ import ActionButton from "./Actionbutton";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
 
+
 const ListContainer = styled.div`
   background-color: #dfe3e6;
   border-radius: 3px;
@@ -33,6 +34,7 @@ const Trellolist = ({ title, cards, listID, index }) => {
                     index={index}
                     text={card.text}
                     id={card.id}
+                    listID={listID}
                   />
                 ))}
                 {provided.placeholder}
