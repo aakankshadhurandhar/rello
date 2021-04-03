@@ -47,8 +47,8 @@ class ActionButton extends Component {
 
     const buttonText = list ? "Add another list" : "Add another card";
     const buttonTextOpacity = list ? 1 : 0.5;
-    const buttonTextColor = list ? "black" : "white";
-    const buttonTextBackground = list ? "#F3F4F6" : "#111827";
+    const buttonTextColor = list ? "white" : "#6B7280";
+    const buttonTextBackground = list ? "#4338CA" : "#F9FAFB";
     const OpenFormButton = styled.div`
       display: flex;
       align-items: center;
@@ -98,7 +98,7 @@ class ActionButton extends Component {
     const StyledButton = styled(Button)`
       && {
         color: white;
-        background: #5aac44;
+        background: #4F46E5;
       }
     `;
 

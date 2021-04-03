@@ -5,26 +5,26 @@ let listID = 2,
 
 const initialState = [
   {
-    title: "Learn ReactJS",
+    title: "To-do",
     id: `list-${0}`,
     cards: [
       {
         id: `card-${0}`,
-        text: "Learn reactJS from Code With Mosh and make small projects.",
+        text: "Learn reactJS  ",
       },
       {
         id: `card-${1}`,
-        text: "Make a simple TODO list App",
+        text: "Make a simple  list App",
       },
     ],
   },
   {
-    title: "Make a Trello like app",
+    title: "Doing",
     id: `list-${1}`,
     cards: [
       {
         id: `card-${2}`,
-        text: "Learn DND.",
+        text: "Learn vanillajs.",
       },
       {
         id: `card-${3}`,

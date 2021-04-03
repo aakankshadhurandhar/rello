@@ -15,6 +15,11 @@ import countcard from '../reducers/listReducer'
 const ListContainer = styled.div`
   display: flex;
   flex-direction: row;
+  
+  @media (max-width: 767px) {
+    flex-direction:column;
+    align-items:center;
+}
 `;
 
 const  App =( props )=>{
@@ -36,7 +41,7 @@ const  App =( props )=>{
     return (
       
         <DragDropContext onDragEnd={onDragEnd}>
-        <h1>TaskHub</h1>
+        <h1>Taskhub🐙</h1>
         
         <Droppable droppableId="all-lists" direction="horizontal" type="list">
           {(provided) => (
