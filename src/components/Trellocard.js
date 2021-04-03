@@ -8,6 +8,7 @@ import { CardContent } from '@material-ui/core';
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
 
+
 const CardContainer = styled.div`
   margin-bottom: 8px;
 `;
