@@ -1,10 +1,8 @@
 //this file is for whole list component like :add a task etc
-import './Components.css'
-import Trellocard from './Trellocard'
-import Actionbutton from './Actionbutton'
-import { Droppable } from "react-beautiful-dnd";
-
 import React from "react";
+import Trellocard from "./Trellocard";
+import ActionButton from "./Actionbutton";
+import { Droppable, Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
 
 const ListContainer = styled.div`
@@ -16,22 +14,35 @@ const ListContainer = styled.div`
   margin-right: 8px;
 `;
 
-
-const TrelloList = ({ title, cards, listID }) => {
+const Trellolist = ({ title, cards, listID, index }) => {
   return (
-    <Droppable droppableId={String(listID)}>
+    <Draggable draggableId={String(listID)} index={index}>
       {(provided) => (
-          <ListContainer {...provided.droppableProps} ref={provided.innerRef}>
-          <h3>{title}</h3>
-          {cards.map((card, index) => (
-            <Trellocard key={card.id} index={index} text={card.text} id={card.id} />
-          ))}
-         
-          {provided.placeholder}
-          <Actionbutton listID={listID} />
-          </ListContainer>
+        <ListContainer
+          {...provided.draggableProps}
+          ref={provided.innerRef}
+          {...provided.dragHandleProps}
+        >
+          <Droppable droppableId={String(listID)}>
+            {(provided) => (
+              <div {...provided.droppableProps} ref={provided.innerRef}>
+                <h4>{title}</h4>
+                {cards.map((card, index) => (
+                  <Trellocard
+                    key={card.id}
+                    index={index}
+                    text={card.text}
+                    id={card.id}
+                  />
+                ))}
+                {provided.placeholder}
+                <ActionButton listID={listID} />
+              </div>
+            )}
+          </Droppable>
+        </ListContainer>
       )}
-    </Droppable>
+    </Draggable>
   );
 };
 
@@ -46,4 +57,4 @@ const styles = {
   },
 };
 
-export default TrelloList;
+export default Trellolist;

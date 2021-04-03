@@ -5,8 +5,8 @@ import './Components.css'
 //connects react-component to store
 import { connect } from 'react-redux';
 import React from 'react';
-import Actionbutton from './Actionbutton';
-import { DragDropContext } from "react-beautiful-dnd";
+import ActionButton from './Actionbutton';
+import { DragDropContext,Droppable } from "react-beautiful-dnd";
 import { sort } from "../actions";
 import styled from "styled-components";
 import './Components.css';
@@ -19,7 +19,7 @@ const ListContainer = styled.div`
 
 const  App =( props )=>{
   const onDragEnd = (result) => {
-    const { destination, source, draggableId } = result;
+    const { destination, source, draggableId, type } = result;
     if (!destination) return;
     props.dispatch(
       sort(
@@ -27,7 +27,8 @@ const  App =( props )=>{
         destination.droppableId,
         source.index,
         destination.index,
-        draggableId
+        draggableId,
+        type,
       )
     );
   };
@@ -36,17 +37,24 @@ const  App =( props )=>{
       
         <DragDropContext onDragEnd={onDragEnd}>
         <h1>TaskHub🌹 </h1>
-        <ListContainer>
-          {lists.map((list) => (
-            <Trellolist
-              key={list.id}
-              listID={list.id}
-              title={list.title}
-              cards={list.cards}
-            />
-          ))}
-          <Actionbutton list />
-        </ListContainer>
+        //list drag and drop
+        <Droppable droppableId="all-lists" direction="horizontal" type="list">
+          {(provided) => (
+            <ListContainer {...provided.droppableProps} ref={provided.innerRef}>
+              {lists.map((list, index) => (
+                <Trellolist
+                  key={list.id}
+                  listID={list.id}
+                  title={list.title}
+                  cards={list.cards}
+                  index={index}
+                />
+              ))}
+              {provided.placeholder}
+              <ActionButton list />
+            </ListContainer>
+          )}
+        </Droppable>
          
         
         </DragDropContext>
