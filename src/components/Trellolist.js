@@ -1,44 +1,128 @@
 //this file is for whole list component like :add a task etc
-import React from "react";
-import Trellocard from "./Trellocard";
-import ActionButton from "./Actionbutton";
+import React, { useState, useEffect } from "react";
+import TrelloCard from "./Trellocard";
+import TrelloCreate from "./Create";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { editTitle, deleteList } from "../actions";
+import Icon from "@material-ui/core/Icon";
 
-//css for list
 const ListContainer = styled.div`
   background-color: #dfe3e6;
   border-radius: 3px;
   width: 300px;
-  height: 100%;
   padding: 8px;
-  margin-right: 8px;
+  height: 100%;
+  margin: 0 8px 0 0;
 `;
 
-const Trellolist = ({ title, cards, listID, index }) => {
+const StyledInput = styled.input`
+  width: 100%;
+  border: none;
+  outline-color: blue;
+  border-radius: 3px;
+  margin-bottom: 3px;
+  padding: 5px;
+`;
+
+const TitleContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+`;
+
+const DeleteButton = styled(Icon)`
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0.4;
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+const ListTitle = styled.h4`
+  transition: background 0.3s ease-in;
+  ${TitleContainer}:hover & {
+    background: #ccc;
+  }
+`;
+
+const TrelloList = ({ title, cards, listID, index, dispatch }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [listTitle, setListTitle] = useState(title);
+
+  const renderEditInput = () => {
+    return (
+      <form onSubmit={handleFinishEditing}>
+        <StyledInput
+          type="text"
+          value={listTitle}
+          onChange={handleChange}
+          autoFocus
+          onFocus={handleFocus}
+          onBlur={handleFinishEditing}
+        />
+      </form>
+    );
+  };
+
+  const handleFocus = e => {
+    console.log("hi");
+
+    e.target.select();
+  };
+
+  const handleChange = e => {
+    e.preventDefault();
+    setListTitle(e.target.value);
+  };
+
+  const handleFinishEditing = e => {
+    setIsEditing(false);
+    dispatch(editTitle(listID, listTitle));
+  };
+
+  const handleDeleteList = () => {
+    dispatch(deleteList(listID));
+  };
+
   return (
     <Draggable draggableId={String(listID)} index={index}>
-      {(provided) => (
+      {provided => (
         <ListContainer
           {...provided.draggableProps}
-          ref={provided.innerRef}
           {...provided.dragHandleProps}
+          ref={provided.innerRef}
         >
-          <Droppable droppableId={String(listID)}>
-            {(provided) => (
+          <Droppable droppableId={String(listID)} type="card">
+            {provided => (
               <div {...provided.droppableProps} ref={provided.innerRef}>
-                <h4>{title}</h4>
+                {isEditing ? (
+                  renderEditInput()
+                ) : (
+                  <TitleContainer onClick={() => setIsEditing(true)}>
+                    <ListTitle>{listTitle}</ListTitle>
+                    <DeleteButton onClick={handleDeleteList}>
+                      delete
+                    </DeleteButton>
+                  </TitleContainer>
+                )}
+
                 {cards.map((card, index) => (
-                  <Trellocard
+                  <TrelloCard
                     key={card.id}
-                    index={index}
                     text={card.text}
                     id={card.id}
+                    index={index}
                     listID={listID}
                   />
                 ))}
+
                 {provided.placeholder}
-                <ActionButton listID={listID} />
+                <TrelloCreate listID={listID} />
               </div>
             )}
           </Droppable>
@@ -48,15 +132,4 @@ const Trellolist = ({ title, cards, listID, index }) => {
   );
 };
 
-const styles = {
-  container: {
-    backgroundColor: "#dfe3e6",
-    borderRadius: 3,
-    width: 300,
-    height: "100%",
-    padding: 8,
-    marginRight: 8,
-  },
-};
-
-export default Trellolist;
+export default connect()(TrelloList);

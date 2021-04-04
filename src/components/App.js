@@ -1,82 +1,72 @@
 
 
-import Trellolist from './Trellolist'
-import './Components.css'
-//connects react-component to store
-import { connect } from 'react-redux';
-import React from 'react';
-import ActionButton from './Actionbutton';
-import { DragDropContext,Droppable } from "react-beautiful-dnd";
-import { sort } from "../actions";
+import React, { Component, PureComponent } from "react";
+import TrelloList from "./Trellolist";
+import { connect } from "react-redux";
+import TrelloCreate from "./Create";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import './Components.css';
+import { sort } from "../actions";
 
-const ListContainer = styled.div`
+const ListsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  
-  @media (max-width: 767px) {
-    flex-direction:column;
-    align-items:center;
-}
 `;
 
-const  App =( props )=>{
-  const onDragEnd = (result) => {
+// TODO: Fix performance issue
+
+class App extends PureComponent {
+  onDragEnd = result => {
     const { destination, source, draggableId, type } = result;
-    if (!destination) return;
-    props.dispatch(
+
+    if (!destination) {
+      return;
+    }
+
+    this.props.dispatch(
       sort(
         source.droppableId,
         destination.droppableId,
         source.index,
         destination.index,
         draggableId,
-        type,
+        type
       )
     );
   };
-    const { lists }=props;
+
+  render() {
+    const { lists } = this.props;
     return (
-      
-        <DragDropContext onDragEnd={onDragEnd}>
-        <h1>Taskhub🐙</h1>
-        
+      <DragDropContext onDragEnd={this.onDragEnd}>
+        <h2>Hello Youtube</h2>
         <Droppable droppableId="all-lists" direction="horizontal" type="list">
-          {(provided) => (
-            <ListContainer {...provided.droppableProps} ref={provided.innerRef}>
+          {provided => (
+            <ListsContainer
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
               {lists.map((list, index) => (
-                <Trellolist
-                  key={list.id}
+                <TrelloList
                   listID={list.id}
+                  key={list.id}
                   title={list.title}
                   cards={list.cards}
                   index={index}
                 />
               ))}
               {provided.placeholder}
-              <ActionButton list />
-            </ListContainer>
+              <TrelloCreate list />
+            </ListsContainer>
           )}
         </Droppable>
-         
-        
-        </DragDropContext>
-      
+      </DragDropContext>
     );
   }
+}
 
-
-
-
-
-//function to subscribe to store updates
-
-
-const mapStateToProps = (state) => ({
-  lists: state.lists,
+const mapStateToProps = state => ({
+  lists: state.lists
 });
 
 export default connect(mapStateToProps)(App);
-
-

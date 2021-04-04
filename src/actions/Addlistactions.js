@@ -1,33 +1,50 @@
 //file for list actions
 
-import { CONSTANTS } from "./index";
-//add list button
-export var addList = (title) => {
+import { CONSTANTS } from "../actions";
+
+export const addList = title => {
   return {
     type: CONSTANTS.ADD_LIST,
-    payload: title,
+    payload: title
   };
 };
 
-
-//drag and drop function
 export const sort = (
   droppableIdStart,
   droppableIdEnd,
   droppableIndexStart,
   droppableIndexEnd,
   draggableId,
-  type,
+  type
 ) => {
   return {
     type: CONSTANTS.DRAG_HAPPENED,
     payload: {
       droppableIdStart,
       droppableIdEnd,
-      droppableIndexStart,
       droppableIndexEnd,
+      droppableIndexStart,
       draggableId,
-      type,
-    },
+      type
+    }
+  };
+};
+
+export const editTitle = (listID, newTitle) => {
+  return {
+    type: CONSTANTS.EDIT_LIST_TITLE,
+    payload: {
+      listID,
+      newTitle
+    }
+  };
+};
+
+export const deleteList = listID => {
+  return {
+    type: CONSTANTS.DELETE_LIST,
+    payload: {
+      listID
+    }
   };
 };
