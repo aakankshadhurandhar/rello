@@ -114,7 +114,7 @@ class ActionButton extends Component {
         <StyledCard>
           <StyledTextarea
             placeholder={placeholder}
-            autoFocus
+            
             onBlur={this.closeForm}
             value={this.state.text}
             onChange={this.handleInputChange}
