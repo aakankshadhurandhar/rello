@@ -19,4 +19,4 @@
 
 # [live website](https://taskhub.netlify.app/)
 
-![demo](gif/Kazam-screencast-00000.gif)
+![demo](gif/Kazam_screencast_00001.gif)

@@ -18,7 +18,7 @@ const ListsContainer = styled.div`
 }
 `;
 
-// TODO: Fix performance issue
+
 
 class App extends PureComponent {
   onDragEnd = result => {
