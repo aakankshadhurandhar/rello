@@ -11,6 +11,7 @@ import TrelloForm from "./Form";
 import { editCard, deleteCard } from "../actions";
 import { connect } from "react-redux";
 import TrelloButton from "./TrelloButton";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 const CardContainer = styled.div`
@@ -101,9 +102,9 @@ const TrelloCard = React.memo(({ text, id, listID, index, dispatch }) => {
                 >
                   edit
                 </EditButton>
-                <DeleteButton fontSize="small" onMouseDown={handleDeleteCard}>
+                <DeleteIcon fontSize="small" onMouseDown={handleDeleteCard}>
                   delete
-                </DeleteButton>
+                </DeleteIcon>
 
                 <CardContent>
                   <Typography>{text}</Typography>

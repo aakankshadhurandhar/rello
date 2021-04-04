@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Icon from "@material-ui/core/Icon";
 import Textarea from "react-textarea-autosize";
 import Card from "@material-ui/core/Card";
+import CloseIcon from '@material-ui/icons/Close';
 
 const Container = styled.div`
   width: 284px;
@@ -29,10 +30,7 @@ const ButtonContainer = styled.div`
   margin-left: 8px;
 `;
 
-const StyledIcon = styled(Icon)`
-  margin-left: 8px;
-  cursor: pointer;
-`;
+
 
 const TrelloForm = React.memo(
   ({ list, text = "", onChange, closeForm, children }) => {
@@ -53,7 +51,7 @@ const TrelloForm = React.memo(
         </StyledCard>
         <ButtonContainer>
           {children}
-          <StyledIcon onMouseDown={closeForm}>close</StyledIcon>
+          <CloseIcon onMouseDown={closeForm}></CloseIcon>
         </ButtonContainer>
       </Container>
     );

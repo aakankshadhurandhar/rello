@@ -6,6 +6,7 @@ import { addList, addCard } from "../actions";
 import styled from "styled-components";
 import TrelloForm from "./Form";
 import TrelloOpenForm from "./OpenForm";
+import AddIcon from '@material-ui/icons/Add';
 
 class TrelloCreate extends React.PureComponent {
   state = {
@@ -82,7 +83,7 @@ class TrelloCreate extends React.PureComponent {
 
     return (
       <OpenFormButton onClick={this.openForm}>
-        <Icon>add</Icon>
+        <AddIcon></AddIcon>
         <p style={{ flexShrink: 0 }}>{buttonText}</p>
       </OpenFormButton>
     );

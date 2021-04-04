@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { editTitle, deleteList } from "../actions";
 import Icon from "@material-ui/core/Icon";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const ListContainer = styled.div`
   background-color: #dfe3e6;
@@ -105,9 +106,9 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
                 ) : (
                   <TitleContainer onClick={() => setIsEditing(true)}>
                     <ListTitle>{listTitle}</ListTitle>
-                    <DeleteButton onClick={handleDeleteList}>
+                    <DeleteIcon onClick={handleDeleteList}>
                       delete
-                    </DeleteButton>
+                    </DeleteIcon>
                   </TitleContainer>
                 )}
 

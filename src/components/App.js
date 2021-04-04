@@ -7,6 +7,7 @@ import TrelloCreate from "./Create";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import { sort } from "../actions";
+import './Components.css'
 
 const ListsContainer = styled.div`
   display: flex;
@@ -39,7 +40,7 @@ class App extends PureComponent {
     const { lists } = this.props;
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
-        <h2>Hello Youtube</h2>
+        <h1>TaskHub🐙</h1>
         <Droppable droppableId="all-lists" direction="horizontal" type="list">
           {provided => (
             <ListsContainer
