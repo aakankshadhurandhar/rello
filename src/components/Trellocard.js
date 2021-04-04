@@ -10,7 +10,10 @@ import styled from "styled-components";
 import Form from './Form'
 
 const CardContainer = styled.div`
-  margin-bottom: 8px;
+margin: 0 0 8px 0;
+position: relative;
+max-width: 100%;
+word-wrap: break-word;
 `;
 
 
@@ -47,7 +50,7 @@ const Trellocard = ({ text,id,index}) => {
           >
             <Card>
               <CardContent>
-                <Typography gutterBottom>{text}</Typography>
+                <Typography >{text}</Typography>
               </CardContent>
             </Card>
           </CardContainer>

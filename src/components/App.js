@@ -10,7 +10,6 @@ import { DragDropContext,Droppable } from "react-beautiful-dnd";
 import { sort } from "../actions";
 import styled from "styled-components";
 import './Components.css';
-import countcard from '../reducers/listReducer'
 
 const ListContainer = styled.div`
   display: flex;
