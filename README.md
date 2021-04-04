@@ -1,7 +1,7 @@
-#**TaskHub:orangutan:**
+# **TaskHub:orangutan:**
 
 
-###Trello-like clone 
+### Trello-like clone 
 ## Features
 * add to list 
 * Add cards
@@ -9,7 +9,7 @@
 * Local storage
   
 
-##Steps to run Project:
+## Steps to run Project:
 * Clone project
 `git clone https://github.com/aakankshadhurandhar/rello.git`
 * go to project directory and start the project
@@ -17,6 +17,6 @@
 * Start react app
    `npm start`
 
-#[live website](https://taskhub.netlify.app/)
+# [live website](https://taskhub.netlify.app/)
 
 ![demo](gif/Kazam-screencast-00000.gif)
