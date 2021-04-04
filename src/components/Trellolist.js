@@ -107,7 +107,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
                   <TitleContainer onClick={() => setIsEditing(true)}>
                     <ListTitle>{listTitle}</ListTitle>
                     <DeleteIcon onClick={handleDeleteList}>
-                      delete
+                      
                     </DeleteIcon>
                   </TitleContainer>
                 )}

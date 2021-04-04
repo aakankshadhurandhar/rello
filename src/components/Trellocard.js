@@ -12,6 +12,7 @@ import { editCard, deleteCard } from "../actions";
 import { connect } from "react-redux";
 import TrelloButton from "./TrelloButton";
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 
 const CardContainer = styled.div`
@@ -36,20 +37,7 @@ const EditButton = styled(Icon)`
   }
 `;
 
-const DeleteButton = styled(Icon)`
-  position: absolute;
-  display: none;
-  right: 5px;
-  bottom: 5px;
-  opacity: 0.5;
-  ${CardContainer}:hover & {
-    display: block;
-    cursor: pointer;
-  }
-  &:hover {
-    opacity: 0.8;
-  }
-`;
+
 
 const TrelloCard = React.memo(({ text, id, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -96,12 +84,12 @@ const TrelloCard = React.memo(({ text, id, listID, index, dispatch }) => {
               onDoubleClick={() => setIsEditing(true)}
             >
               <Card>
-                <EditButton
+                <EditIcon
                   onMouseDown={() => setIsEditing(true)}
                   fontSize="small"
                 >
-                  edit
-                </EditButton>
+                 
+                </EditIcon>
                 <DeleteIcon fontSize="small" onMouseDown={handleDeleteCard}>
                   delete
                 </DeleteIcon>
