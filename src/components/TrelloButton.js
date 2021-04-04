@@ -1,3 +1,6 @@
+//file for button css and action
+
+
 import React from "react";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
@@ -6,7 +9,7 @@ import Button from "@material-ui/core/Button";
 const StyledButton = styled(Button)`
   && {
     color: white;
-    background: #5aac44;
+    background:#5B21B6;
   }
 `;
 

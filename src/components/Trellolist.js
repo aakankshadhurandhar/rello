@@ -16,6 +16,9 @@ const ListContainer = styled.div`
   padding: 8px;
   height: 100%;
   margin: 0 8px 0 0;
+  
+
+  
 `;
 
 const StyledInput = styled.input`
@@ -35,14 +38,7 @@ const TitleContainer = styled.div`
   cursor: pointer;
 `;
 
-const DeleteButton = styled(Icon)`
-  cursor: pointer;
-  transition: opacity 0.3s ease-in-out;
-  opacity: 0.4;
-  &:hover {
-    opacity: 0.8;
-  }
-`;
+
 
 const ListTitle = styled.h4`
   transition: background 0.3s ease-in;

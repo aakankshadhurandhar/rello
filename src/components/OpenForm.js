@@ -1,12 +1,13 @@
+
 import React from "react";
-import Icon from "@material-ui/core/Icon";
+
 import styled from "styled-components";
 import AddIcon from '@material-ui/icons/Add';
 
 const TrelloOpenForm = ({ list, children, onClick }) => {
   const buttonTextOpacity = list ? 1 : 0.5;
   const buttonTextColor = list ? "white" : "inherit";
-  const buttonTextBackground = list ? "rgba(0,0,0,.15)" : "inherit";
+  const buttonTextBackground = list ? "#6D28D9" : "inherit";
 
   const OpenFormButton = styled.div`
     display: flex;

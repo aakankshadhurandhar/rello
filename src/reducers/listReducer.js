@@ -46,6 +46,7 @@ const initialState = [
 
 const listsReducer = (state = initialState, action) => {
   switch (action.type) {
+    //add list
     case CONSTANTS.ADD_LIST:
       const newList = {
         title: action.payload,
@@ -54,7 +55,7 @@ const listsReducer = (state = initialState, action) => {
       };
       listID += 1;
       return [...state, newList];
-
+    //add card
     case CONSTANTS.ADD_CARD: {
       const newCard = {
         text: action.payload.text,
@@ -77,7 +78,7 @@ const listsReducer = (state = initialState, action) => {
 
       return newState;
     }
-
+    //drag and drop
     case CONSTANTS.DRAG_HAPPENED:
       const {
         droppableIdStart,
@@ -117,7 +118,7 @@ const listsReducer = (state = initialState, action) => {
       }
 
       return newState;
-
+      //edit card
     case CONSTANTS.EDIT_CARD: {
       const { id, listID, newText } = action.payload;
       return state.map(list => {
@@ -134,7 +135,7 @@ const listsReducer = (state = initialState, action) => {
         return list;
       });
     }
-
+    //delete card
     case CONSTANTS.DELETE_CARD: {
       const { id, listID } = action.payload;
       return state.map(list => {
@@ -146,7 +147,7 @@ const listsReducer = (state = initialState, action) => {
         }
       });
     }
-
+//edit list title
     case CONSTANTS.EDIT_LIST_TITLE: {
       const { listID, newListTitle } = action.payload;
       return state.map(list => {
@@ -158,7 +159,7 @@ const listsReducer = (state = initialState, action) => {
         }
       });
     }
-
+//delete list
     case CONSTANTS.DELETE_LIST: {
       const { listID } = action.payload;
       return state.filter(list => list.id !== listID);

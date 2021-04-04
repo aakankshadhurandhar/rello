@@ -12,6 +12,10 @@ import './Components.css'
 const ListsContainer = styled.div`
   display: flex;
   flex-direction: row;
+  @media (max-width: 767px) {
+    flex-direction:column;
+    align-items:center;
+}
 `;
 
 // TODO: Fix performance issue

@@ -29,7 +29,7 @@ export const sort = (
     }
   };
 };
-
+//edit title
 export const editTitle = (listID, newTitle) => {
   return {
     type: CONSTANTS.EDIT_LIST_TITLE,
