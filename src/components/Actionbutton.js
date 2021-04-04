@@ -44,11 +44,12 @@ class ActionButton extends Component {
 
   renderAddButton = () => {
     const { list } = this.props;
-
+    /*css for buttonsand forms*/
     const buttonText = list ? "Add another list" : "Add another card";
     const buttonTextOpacity = list ? 1 : 0.5;
     const buttonTextColor = list ? "white" : "#6B7280";
     const buttonTextBackground = list ? "#4338CA" : "#F9FAFB";
+
     const OpenFormButton = styled.div`
       display: flex;
       align-items: center;
@@ -66,7 +67,7 @@ class ActionButton extends Component {
     return (
       <OpenFormButton onClick={this.openForm}>
         <AddIcon></AddIcon>
-        <p style={{ flexShrink: 0 }}>{buttonText}</p>
+        <p>{buttonText}</p>
       </OpenFormButton>
     );
   };

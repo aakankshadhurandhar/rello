@@ -40,6 +40,7 @@ const initialState = [
 
 const listReducer = (state = initialState, action) => {
   switch (action.type) {
+    //case for addition of list
     case CONSTANTS.ADD_LIST:
       const newList = {
         title: action.payload,
@@ -75,7 +76,7 @@ const listReducer = (state = initialState, action) => {
         type,
       } = action.payload;
       const newState = [...state];
-      
+      //dragging list around
       if (type === "list") {
         const list = newState.splice(droppableIndexStart, 1);
         newState.splice(droppableIndexEnd, 0, ...list);
@@ -88,14 +89,20 @@ const listReducer = (state = initialState, action) => {
         const card = list.cards.splice(droppableIndexStart, 1);
         list.cards.splice(droppableIndexEnd, 0, ...card);
       }
-      else {
-        const startList = state.find((list) => droppableIdStart === list.id);
-        const card = startList.cards.splice(droppableIndexStart, 1);
-        const endList = state.find((list) => droppableIdEnd === list.id);
-        endList.cards.splice(droppableIndexEnd, 0, ...card);
+       // other list
+       if (droppableIdStart !== droppableIdEnd) {
+        // find the list where the drag happened
+        const listStart = state.find(list => droppableIdStart === list.id);
+        // pull out the card from this list
+        const card = listStart.cards.splice(droppableIndexStart, 1);
+        // find the list where the drag ended
+        const listEnd = state.find(list => droppableIdEnd === list.id);
+
+        // put the card in the new list
+        listEnd.cards.splice(droppableIndexEnd, 0, ...card);
       }
+
       return newState;
-      
 
     default:
       return state;
