@@ -1,4 +1,4 @@
-
+//function for opeaning form and add button
 import React from "react";
 
 import styled from "styled-components";
@@ -8,7 +8,7 @@ const TrelloOpenForm = ({ list, children, onClick }) => {
   const buttonTextOpacity = list ? 1 : 0.5;
   const buttonTextColor = list ? "white" : "inherit";
   const buttonTextBackground = list ? "#6D28D9" : "inherit";
-
+//css for openbutton
   const OpenFormButton = styled.div`
     display: flex;
     align-items: center;

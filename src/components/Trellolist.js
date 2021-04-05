@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { editTitle, deleteList } from "../actions";
 import Icon from "@material-ui/core/Icon";
 import DeleteIcon from '@material-ui/icons/Delete';
-
+//css for lists
 const ListContainer = styled.div`
   background-color: #dfe3e6;
   border-radius: 3px;

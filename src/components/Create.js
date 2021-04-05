@@ -1,3 +1,5 @@
+/*File to create new list or card */
+
 import React from "react";
 import Icon from "@material-ui/core/Icon";
 import TrelloButton from "./TrelloButton";
@@ -103,6 +105,7 @@ class TrelloCreate extends React.PureComponent {
         </TrelloButton>
       </TrelloForm>
     ) : (
+      /*Add another card or list option */
       <TrelloOpenForm list={list} onClick={this.openForm}>
         {list ? "Add another list" : "Add another card"}
       </TrelloOpenForm>

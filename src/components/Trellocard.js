@@ -14,7 +14,7 @@ import TrelloButton from "./TrelloButton";
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-
+//css for cards
 const CardContainer = styled.div`
   margin: 0 0 8px 0;
   position: relative;
@@ -71,7 +71,7 @@ const TrelloCard = React.memo(({ text, id, listID, index, dispatch }) => {
       </TrelloForm>
     );
   };
-
+//for drag and drop and entering text inside function
   const renderCard = () => {
     return (
       <div>
